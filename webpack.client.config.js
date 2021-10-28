@@ -7,7 +7,7 @@ const clientPort = 8080
 const config = {
   target: "web",
 
-  entry: "./src/client/index.js",
+  entry: "./src/client/index.tsx",
 
   output: {
     path: path.join(__dirname, "./build/client"),

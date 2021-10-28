@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 let config = {
   target: "node",
 
-  entry: "./src/server/index.js",
+  entry: "./src/server/index.tsx",
 
   output: {
     path: path.join(__dirname, "./build/server"),
