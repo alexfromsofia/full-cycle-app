@@ -1,9 +1,18 @@
-import React from "react"
+import { Route, Switch } from "react-router-dom"
+import Nav from "./Nav/Nav"
+
+const Home = () => <div>Home</div>
+const About = () => <div>About</div>
+const Contact = () => <div>Contact</div>
 
 const App = () => (
   <>
-    <div>Hello World</div>
-    <button onClick={(e) => alert("Hello You!")}>Say Hello Back!</button>
+    <Nav />
+    <Switch>
+      <Route path="/contact" component={Contact} />
+      <Route path="/about" component={About} />
+      <Route path="/" component={Home} />
+    </Switch>
   </>
 )
 
