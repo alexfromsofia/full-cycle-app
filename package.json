@@ -4,11 +4,17 @@
   "description": "This repo aims to implement the full cycle of a front end application. From code to ssr, through docker image, CI/CD and deployment.",
   "scripts": {
     "clear": "rimraf build",
+    "build:client": "webpack --config webpack.client.config.js",
     "build:server": "webpack --config webpack.server.config.js",
+    "dev": "webpack serve --config webpack.dev.config.js",
+    "build": "npm run build:client && npm run build:server",
     "start:server": "node build/server/bundle.js",
-    "dev:server": "nodemon --ignore 'build/**/*' --exec 'run-s clear build:server start:server'",
-    "dev:client": "webpack serve --config webpack.client.config.js",
-    "dev": "run-p dev:client dev:server"
+    "serve:server": "nodemon --ignore 'build/**/*' --exec 'run-s clear build:server start:server'",
+    "serve:client": "webpack serve --config webpack.client.config.js",
+    "serve": "run-p serve:client serve:server",
+    "build:docker": "docker build -t full-cycle-app:latest .",
+    "serve:docker": "docker run -d -p 3000:3000 -p 8080:8080 --name full-cycle-app full-cycle-app:latest",
+    "docker": "npm run build:docker && npm run serve:docker"
   },
   "repository": {
     "type": "git",

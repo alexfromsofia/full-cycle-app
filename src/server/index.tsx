@@ -6,7 +6,11 @@ import { StaticRouter } from "react-router"
 import App from "../client/components/App"
 import routes from "../shared/routes"
 const app = express()
-const port = 3000
+const port = process.env.SERVER_PORT || 3000
+const clientPort = process.env.CLIENT_PORT || 8080
+const origin = process.env.ORIGIN || "localhost"
+
+app.use("/js", express.static(`${__dirname}/../build/server`))
 
 routes.forEach(({ route }) =>
   app.get(route, (req, res) => {
@@ -15,8 +19,7 @@ routes.forEach(({ route }) =>
         <App />
       </StaticRouter>
     )
-    const clientBundleScript = `<script src="http://localhost:8080/scripts/bundle.js"></script>`
-
+    const clientBundleScript = `<script src="http://${origin}:${clientPort}/bundle.js"></script>`
     fs.readFile(`${__dirname}/index.html`, (error, data) => {
       if (error) {
         throw error
@@ -25,7 +28,7 @@ routes.forEach(({ route }) =>
       res.send(`
         ${data
           .toString()
-          .replace("<div id='root'>", `<div id='root'>${jsx}`)
+          .replace('<div id="root">', `<div id='root'>${jsx}`)
           .replace("</body>", `${clientBundleScript}</body>`)}
     `)
     })
@@ -33,5 +36,5 @@ routes.forEach(({ route }) =>
 )
 
 app.listen(port, () => {
-  console.log(`App listening on http://localhost:${port}`)
+  console.log(`App listening on http://${origin}:${port}`)
 })
