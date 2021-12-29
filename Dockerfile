@@ -2,7 +2,7 @@ FROM node:lts-alpine
 
 ENV CLIENT_PORT=8080
 ENV SERVER_PORT=3000
-ENV NODE_ENV=development
+ENV NODE_ENV=production
 ENV ORIGIN=localhost
 
 EXPOSE 3000
@@ -17,7 +17,6 @@ RUN npm install
 COPY . .
 
 CMD \
-  # TODO: Optimized build
   # OCI compatible image https://opencontainers.org/
   # TODO: ENV variables  
   # Build SSR app
