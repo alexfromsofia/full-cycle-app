@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express"
 import fs from "fs"
+import helmet from "helmet"
 import React from "react"
 import ReactDOMServer from "react-dom/server"
 import { Provider } from "react-redux"
@@ -14,6 +15,7 @@ const port = process.env.SERVER_PORT || 3000
 const clientPort = process.env.CLIENT_PORT || 8080
 const origin = process.env.ORIGIN || "localhost"
 
+app.use(helmet({ contentSecurityPolicy: false }))
 app.use("/js", express.static(`${__dirname}/../build/server`))
 
 function handleRender(req: Request, res: Response) {
@@ -50,6 +52,7 @@ function renderFullPage(html: string, preloadedState: RootState) {
       .replace("</body>", `${clientBundleScript}</body>`)}
     `
   } catch {
+    // This should never happen ;)
     return ""
   }
 }
