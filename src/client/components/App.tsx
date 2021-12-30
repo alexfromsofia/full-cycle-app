@@ -1,7 +1,8 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Route, Switch } from "react-router-dom"
-import { selectCounter } from "../../store/selectors"
+import { RootState } from "../../store"
+import { selectEth } from "../../store/selectors"
 import { incrementByAmount } from "../../store/slices/counter"
 import Nav from "./Nav/Nav"
 
@@ -10,7 +11,7 @@ const About = () => <div>About</div>
 const Contact = () => <div>Contact</div>
 
 const App = () => {
-  const state = useSelector(selectCounter)
+  const ethPrice = useSelector((state: RootState) => selectEth(state, "ETH"))
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const App = () => {
         <Route path="/about" component={About} />
         <Route path="/" component={Home} />
       </Switch>
-      <div>{state.value}</div>
+      <div>{ethPrice}</div>
     </>
   )
 }

@@ -1,3 +1,4 @@
+import { configureStore } from "@reduxjs/toolkit"
 import express, { Request, Response } from "express"
 import fs from "fs"
 import helmet from "helmet"
@@ -8,7 +9,9 @@ import { StaticRouter } from "react-router"
 import serialize from "serialize-javascript"
 import App from "../client/components/App"
 import routes from "../shared/routes"
-import { RootState, store } from "../store"
+import { RootState } from "../store"
+import counter from "../store/slices/counter"
+import price from "../store/slices/price"
 
 const app = express()
 const port = process.env.SERVER_PORT || 3000
@@ -18,7 +21,15 @@ const origin = process.env.ORIGIN || "localhost"
 app.use(helmet({ contentSecurityPolicy: false }))
 app.use("/js", express.static(`${__dirname}/../build/server`))
 
-function handleRender(req: Request, res: Response) {
+async function handleRender(req: Request, res: Response, initialData?: any) {
+  const store = configureStore({
+    reducer: {
+      counter,
+      price,
+    },
+    preloadedState: initialData,
+  })
+
   const html = ReactDOMServer.renderToString(
     <Provider store={store}>
       <StaticRouter location={req.url}>
@@ -57,8 +68,10 @@ function renderFullPage(html: string, preloadedState: RootState) {
   }
 }
 
-routes.forEach(({ route }) => {
-  app.get(route, handleRender)
+routes.forEach(async ({ route, fetchData }) => {
+  const data = await fetchData()
+
+  app.get(route, (req, res) => handleRender(req, res, data))
 })
 
 app.listen(port, () => {

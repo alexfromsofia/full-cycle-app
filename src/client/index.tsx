@@ -16,4 +16,3 @@ ReactDOM.hydrate(
 
 // TODO: Setup local Jenkins with docker
 // TODO: react-router-config - https://subscription.packtpub.com/book/web_development/9781839215414/16/ch16lvl1sec91/server-side-rendering-with-data
-// TODO: Add Redux store
