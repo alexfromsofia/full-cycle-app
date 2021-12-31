@@ -1,24 +1,13 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { Route, Switch } from "react-router-dom"
-import { RootState } from "../../store"
-import { selectEth } from "../../store/selectors"
-import { incrementByAmount } from "../../store/slices/counter"
+import { selectCounter } from "../../store/selectors"
+import About from "../pages/About"
+import Contact from "../pages/Contact"
+import Home from "../pages/Home"
 import Nav from "./Nav/Nav"
 
-const Home = () => <div>Home</div>
-const About = () => <div>About</div>
-const Contact = () => <div>Contact</div>
-
 const App = () => {
-  const ethPrice = useSelector((state: RootState) => selectEth(state, "ETH"))
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    setInterval(() => {
-      dispatch(incrementByAmount(Math.random()))
-    }, 5000)
-  }, [])
+  const { value } = useSelector(selectCounter)
 
   return (
     <>
@@ -28,7 +17,7 @@ const App = () => {
         <Route path="/about" component={About} />
         <Route path="/" component={Home} />
       </Switch>
-      <div>{ethPrice}</div>
+      <div>{value}</div>
     </>
   )
 }

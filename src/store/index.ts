@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit"
+import { canUseDOM } from "../utils"
 import counter from "./slices/counter"
-import price from "./slices/price"
 
 declare global {
   interface Window {
@@ -8,15 +8,20 @@ declare global {
   }
 }
 
-export const store = configureStore({
-  reducer: {
-    counter,
-    price,
-  },
-  preloadedState: window.__PRELOADED_STATE__,
-})
+export const store = canUseDOM
+  ? configureStore({
+      reducer: {
+        counter,
+      },
+      preloadedState: window.__PRELOADED_STATE__,
+    })
+  : configureStore({
+      reducer: {
+        counter,
+      },
+    })
 
-if (window.__PRELOADED_STATE__) {
+if (canUseDOM && window.__PRELOADED_STATE__) {
   delete window.__PRELOADED_STATE__
 }
 
