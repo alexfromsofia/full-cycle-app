@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/alexfromsofia/full-cycle-app#readme",
   "dependencies": {
+    "@apollo/client": "^3.5.6",
     "@babel/core": "^7.15.8",
     "@babel/node": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
@@ -39,6 +40,7 @@
     "@types/react-router-dom": "^5.3.2",
     "@types/serialize-javascript": "^5.0.2",
     "babel-loader": "^8.2.3",
+    "dotenv-webpack": "^7.0.3",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "html-webpack-plugin": "^5.5.0",

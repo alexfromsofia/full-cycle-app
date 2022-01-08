@@ -5,6 +5,7 @@ import counter from "./slices/counter"
 declare global {
   interface Window {
     __PRELOADED_STATE__: any
+    __APOLLO_STATE__: any
   }
 }
 
