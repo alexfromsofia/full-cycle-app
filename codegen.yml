@@ -1,0 +1,12 @@
+overwrite: true
+schema:
+  - https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/environments/${CONTENTFUL_ENVIRONMENT}:
+      headers:
+        Authorization: "Bearer ${CDA_TOKEN}"
+documents: "src/**/!(*.d).{ts,tsx}"
+generates:
+  src/schema.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo

@@ -7,13 +7,14 @@
     "build:client": "webpack --config webpack.client.config.js",
     "build:server": "webpack --config webpack.server.config.js",
     "dev": "webpack serve --config webpack.dev.config.js",
-    "build": "npm run build:client && npm run build:server",
+    "build": "npm run && npm run build:client && npm run build:server",
     "start:server": "node build/server/bundle.js",
     "serve:server": "nodemon --ignore 'build/**/*' --exec 'run-s clear build:server start:server'",
-    "serve:client": "webpack serve --config webpack.client.config.js",
-    "serve": "run-p serve:client serve:server",
+    "serve:client": "npm run gen && webpack serve --config webpack.client.config.js",
+    "serve": "npm run gen && run-p serve:client serve:server",
     "build:docker": "docker build -t full-cycle-app:latest .",
     "serve:docker": "docker run -d -p 3000:3000 -p 8080:8080 --name full-cycle-app full-cycle-app:latest",
+    "gen": "graphql-codegen --config codegen.yml --require dotenv/config",
     "docker": "npm run build:docker && npm run serve:docker"
   },
   "repository": {
@@ -63,6 +64,11 @@
     "webpack-node-externals": "^3.0.0"
   },
   "devDependencies": {
-    "@types/isomorphic-fetch": "^0.0.35"
+    "@graphql-codegen/cli": "^2.3.1",
+    "@graphql-codegen/typescript": "^2.4.2",
+    "@graphql-codegen/typescript-operations": "^2.2.2",
+    "@graphql-codegen/typescript-react-apollo": "^3.2.3",
+    "@types/isomorphic-fetch": "^0.0.35",
+    "graphql": "^15.8.0"
   }
 }
