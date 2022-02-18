@@ -4,6 +4,7 @@
   "description": "This repo aims to implement the full cycle of a front end application. From code to ssr, through docker image, CI/CD and deployment.",
   "scripts": {
     "clear": "rimraf build",
+    "prepare": "cp .env.example .env",
     "build:client": "webpack --config webpack.client.config.js",
     "build:server": "webpack --config webpack.server.config.js",
     "dev": "webpack serve --config webpack.dev.config.js",
@@ -64,11 +65,13 @@
     "webpack-node-externals": "^3.0.0"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^2.3.1",
-    "@graphql-codegen/typescript": "^2.4.2",
-    "@graphql-codegen/typescript-operations": "^2.2.2",
-    "@graphql-codegen/typescript-react-apollo": "^3.2.3",
+    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/typescript": "^2.4.5",
+    "@graphql-codegen/typescript-operations": "^2.3.2",
+    "@graphql-codegen/typescript-react-apollo": "^3.2.8",
     "@types/isomorphic-fetch": "^0.0.35",
-    "graphql": "^15.8.0"
+    "css-loader": "^6.6.0",
+    "graphql": "^15.8.0",
+    "style-loader": "^3.3.1"
   }
 }

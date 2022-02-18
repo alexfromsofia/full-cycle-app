@@ -1,0 +1,81 @@
+html {
+  color: rgb(255, 255, 255);
+  background-color: rgb(33, 36, 41);
+}
+
+* {
+  font-family: "Inter custom", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  width: 200vw;
+  height: 200vh;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    #fc077d10 0,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translate(-50vw, -100vh);
+  z-index: -1;
+}
+
+.container {
+  width: 100%;
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+nav {
+  justify-self: center;
+  background-color: rgb(25, 27, 31);
+  width: fit-content;
+  padding: 2px;
+  border-radius: 16px;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 10px;
+  overflow: auto;
+  -webkit-box-align: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 12px;
+}
+
+nav a {
+  border-radius: 3rem;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(195, 197, 203);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  word-break: break-word;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+
+nav .active {
+  border-radius: 14px;
+  font-weight: 600;
+  -webkit-box-pack: center;
+  justify-content: center;
+  color: rgb(255, 255, 255);
+  background-color: rgb(33, 36, 41);
+}
+
+.page {
+  padding: 12px;
+}

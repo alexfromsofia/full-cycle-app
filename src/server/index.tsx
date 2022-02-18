@@ -25,7 +25,7 @@ const clientPort = process.env.CLIENT_PORT || 8080
 const origin = process.env.ORIGIN || "localhost"
 
 app.use(helmet({ contentSecurityPolicy: false }))
-app.use("/js", express.static(`${__dirname}/../build/server`))
+app.use("/public", express.static(`${__dirname}/../../public`))
 
 async function handleRender(req: Request, res: Response) {
   const client = new ApolloClient({

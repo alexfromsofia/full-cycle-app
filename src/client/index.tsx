@@ -8,7 +8,9 @@ import { graphqlURI } from "../utils"
 import App from "./components/App"
 
 const client = new ApolloClient({
-  cache: new InMemoryCache().restore(JSON.parse(window.__APOLLO_STATE__)),
+  cache: window.__APOLLO_STATE__
+    ? new InMemoryCache().restore(JSON.parse(window.__APOLLO_STATE__))
+    : new InMemoryCache(),
   uri: graphqlURI,
 })
 
@@ -16,6 +18,7 @@ ReactDOM.hydrate(
   <ApolloProvider client={client}>
     <Provider store={store}>
       <BrowserRouter>
+        <div className="gradient" />
         <App />
       </BrowserRouter>
     </Provider>

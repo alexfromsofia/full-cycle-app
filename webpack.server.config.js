@@ -14,6 +14,7 @@ let config = {
   output: {
     path: path.join(__dirname, "./build/server"),
     filename: "bundle.js",
+    publicPath: "./public",
   },
 
   plugins: [

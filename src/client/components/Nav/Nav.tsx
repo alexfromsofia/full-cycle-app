@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import routes from "../../../shared/routes"
 
 const Nav = () => (
-  <div>
+  <nav>
     {routes.map(({ route, text }) => (
-      <Link key={route} to={route}>
+      <NavLink exact key={route} to={route} activeClassName="active">
         {text}
-      </Link>
+      </NavLink>
     ))}
-  </div>
+  </nav>
 )
 
 export default Nav
