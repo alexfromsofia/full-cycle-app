@@ -22,8 +22,13 @@ export const store = canUseDOM
       },
     })
 
-if (canUseDOM && window.__PRELOADED_STATE__) {
-  delete window.__PRELOADED_STATE__
+if (canUseDOM) {
+  if (window.__PRELOADED_STATE__) {
+    delete window.__PRELOADED_STATE__
+  }
+  if (window.__APOLLO_STATE__) {
+    delete window.__APOLLO_STATE__
+  }
 }
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

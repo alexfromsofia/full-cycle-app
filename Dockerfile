@@ -11,6 +11,7 @@ EXPOSE 8080
 WORKDIR /
 
 COPY package.json ./
+COPY .env.example ./
 
 RUN npm install
 

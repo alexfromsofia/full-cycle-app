@@ -24,6 +24,8 @@ export type Scalars = {
   Dimension: any;
   /** The 'HexColor' type represents color in `rgb:ffffff` string format. */
   HexColor: any;
+  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
+  JSON: any;
   /** The 'Quality' type represents quality as whole numeric values between `1` and `100`. */
   Quality: any;
 };
@@ -179,10 +181,19 @@ export type AssetFilter = {
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  productCollection?: Maybe<ProductCollection>;
 };
 
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type AssetLinkingCollectionsProductCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
@@ -536,6 +547,149 @@ export enum PersonOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
+/** [See type definition](https://app.contentful.com/spaces/4fii9mbmkcxr/content_types/product) */
+export type Product = Entry & {
+  __typename?: 'Product';
+  contentfulMetadata: ContentfulMetadata;
+  description?: Maybe<Scalars['String']>;
+  imageCollection?: Maybe<AssetCollection>;
+  isNew?: Maybe<Scalars['Boolean']>;
+  linkedFrom?: Maybe<ProductLinkingCollections>;
+  name?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['Float']>;
+  priceData?: Maybe<Scalars['JSON']>;
+  sys: Sys;
+  type?: Maybe<Entry>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4fii9mbmkcxr/content_types/product) */
+export type ProductDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4fii9mbmkcxr/content_types/product) */
+export type ProductImageCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4fii9mbmkcxr/content_types/product) */
+export type ProductIsNewArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4fii9mbmkcxr/content_types/product) */
+export type ProductLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4fii9mbmkcxr/content_types/product) */
+export type ProductNameArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4fii9mbmkcxr/content_types/product) */
+export type ProductPriceArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4fii9mbmkcxr/content_types/product) */
+export type ProductPriceDataArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4fii9mbmkcxr/content_types/product) */
+export type ProductTypeArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ProductCollection = {
+  __typename?: 'ProductCollection';
+  items: Array<Maybe<Product>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export type ProductFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ProductFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ProductFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  description?: InputMaybe<Scalars['String']>;
+  description_contains?: InputMaybe<Scalars['String']>;
+  description_exists?: InputMaybe<Scalars['Boolean']>;
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  description_not?: InputMaybe<Scalars['String']>;
+  description_not_contains?: InputMaybe<Scalars['String']>;
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  imageCollection_exists?: InputMaybe<Scalars['Boolean']>;
+  isNew?: InputMaybe<Scalars['Boolean']>;
+  isNew_exists?: InputMaybe<Scalars['Boolean']>;
+  isNew_not?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
+  name_contains?: InputMaybe<Scalars['String']>;
+  name_exists?: InputMaybe<Scalars['Boolean']>;
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  name_not?: InputMaybe<Scalars['String']>;
+  name_not_contains?: InputMaybe<Scalars['String']>;
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  price?: InputMaybe<Scalars['Float']>;
+  price_data_exists?: InputMaybe<Scalars['Boolean']>;
+  price_exists?: InputMaybe<Scalars['Boolean']>;
+  price_gt?: InputMaybe<Scalars['Float']>;
+  price_gte?: InputMaybe<Scalars['Float']>;
+  price_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  price_lt?: InputMaybe<Scalars['Float']>;
+  price_lte?: InputMaybe<Scalars['Float']>;
+  price_not?: InputMaybe<Scalars['Float']>;
+  price_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  sys?: InputMaybe<SysFilter>;
+  type_exists?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ProductLinkingCollections = {
+  __typename?: 'ProductLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type ProductLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export enum ProductOrder {
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  IsNewAsc = 'isNew_ASC',
+  IsNewDesc = 'isNew_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  PriceAsc = 'price_ASC',
+  PriceDesc = 'price_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
 export type Query = {
   __typename?: 'Query';
   asset?: Maybe<Asset>;
@@ -545,6 +699,10 @@ export type Query = {
   pageCollection?: Maybe<PageCollection>;
   person?: Maybe<Person>;
   personCollection?: Maybe<PersonCollection>;
+  product?: Maybe<Product>;
+  productCollection?: Maybe<ProductCollection>;
+  type?: Maybe<Type>;
+  typeCollection?: Maybe<TypeCollection>;
 };
 
 
@@ -608,6 +766,40 @@ export type QueryPersonCollectionArgs = {
   where?: InputMaybe<PersonFilter>;
 };
 
+
+export type QueryProductArgs = {
+  id: Scalars['String'];
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type QueryProductCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<ProductOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ProductFilter>;
+};
+
+
+export type QueryTypeArgs = {
+  id: Scalars['String'];
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type QueryTypeCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<TypeOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<TypeFilter>;
+};
+
 export type Sys = {
   __typename?: 'Sys';
   environmentId: Scalars['String'];
@@ -654,6 +846,75 @@ export type SysFilter = {
   publishedVersion_not?: InputMaybe<Scalars['Float']>;
   publishedVersion_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
 };
+
+/** The type of the asset [See type definition](https://app.contentful.com/spaces/4fii9mbmkcxr/content_types/type) */
+export type Type = Entry & {
+  __typename?: 'Type';
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<TypeLinkingCollections>;
+  name?: Maybe<Scalars['String']>;
+  sys: Sys;
+};
+
+
+/** The type of the asset [See type definition](https://app.contentful.com/spaces/4fii9mbmkcxr/content_types/type) */
+export type TypeLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** The type of the asset [See type definition](https://app.contentful.com/spaces/4fii9mbmkcxr/content_types/type) */
+export type TypeNameArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type TypeCollection = {
+  __typename?: 'TypeCollection';
+  items: Array<Maybe<Type>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export type TypeFilter = {
+  AND?: InputMaybe<Array<InputMaybe<TypeFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<TypeFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  name?: InputMaybe<Scalars['String']>;
+  name_contains?: InputMaybe<Scalars['String']>;
+  name_exists?: InputMaybe<Scalars['Boolean']>;
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  name_not?: InputMaybe<Scalars['String']>;
+  name_not_contains?: InputMaybe<Scalars['String']>;
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  sys?: InputMaybe<SysFilter>;
+};
+
+export type TypeLinkingCollections = {
+  __typename?: 'TypeLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type TypeLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export enum TypeOrder {
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
 
 export type GetPersonQueryVariables = Exact<{ [key: string]: never; }>;
 
